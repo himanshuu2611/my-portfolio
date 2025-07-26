@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+<div class="navbar">
+  <a href="#home" class="logo">Himanshu Tiwari</a>
+
+  <!-- Hamburger Icon -->
+  <div class="hamburger" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Nav Links -->
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact us</a></li>
+  </ul>
+</div>
+
+
+    <!-- Hero section -->
+     <section id="home" class="hero">
+         <div class="hero-content">
+            <h1>Full-Stack Developer</h1>
+            <p> Passionate About Building Modern Web Interfaces</p>
+            <p> Exploring Emerging Technologies Every Day</p>
+            <p>Learning and Growing Through Real-World Projects</p>
+            
+            <a href="#contact" class="cta-button">Let's Connect !</a>
+         </div>
+         <div class="hero-img">
+            <img src="pic.png" alt="Profile" class="profile-img" height="200">
+
+         </div>
+     </section>
+
+
+     <!-- Skills section -->
+      <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h3>Frontend Development</h3>
+                <p>HTML5,Tailwind CSS</p>
+            </div>
+             <div class="skill-card">
+                <i class="fas fa-server"></i>
+                <h3>Backend Development</h3>
+                <p>.Js,Node.js,Express.js</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database"></i>
+                <h3>Database</h3>
+                <p>MongoDB,SQL</p>
+            </div>
+        </div>
+      </section>
+
+      <!-- projects -->
+
+
+       <!-- Projects Section -->
+<section id="projects" class="projects">
+  <h2>Projects</h2>
+  <div class="projects-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="tictactoe.png" alt="Project 1">
+      <h3>Tic Tac Toe</h3>
+      <p>A modern responsive portfolio using HTML, CSS, and JS with animations and scroll effects.</p>
+      <a href="https://himanshuu2611.github.io/Tic-Tac-Toe-Game/" class="project-link" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="weather.png" alt="Project 2">
+      <h3>Weather App</h3>
+      <p>Real-time weather forecast using OpenWeatherMap API with beautiful UI in React.js.</p>
+      <a href="#" class="project-link" target="_blank">View Project</a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="currency.png" alt="Project 3">
+      <h3>Currency Converter</h3>
+      <p>CRUD-based task management app with Node.js backend and MongoDB database.</p>
+      <a href="https://himanshuu2611.github.io/Currency-Converter/" class="project-link" target="_blank">View Project</a>
+    </div>
+  </div>
+</section>
+
+ <!-- Contact Us Section -->
+<section id="contact" class="contact">
+  <h2>Contact Me</h2>
+  <p class="contact-subtext">Have a project in mind or just want to say hi?</p>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit" class="cta-button">Send Message</button>
+  </form>
+</section>
+
+
+
+      <!-- footer -->
+       <footer>
+        <p>&copy; 2025 Himanshu. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com/himanshuu2611" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/himanshuu315/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:himanshutiwari6371@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.geeksforgeeks.org/user/himanshuu315/" target="_blank"><i class="fas fa-code"></i></a>
+        </div>
+       </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
