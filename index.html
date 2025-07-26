@@ -104,13 +104,18 @@
   <h2>Contact Me</h2>
   <p class="contact-subtext">Have a project in mind or just want to say hi?</p>
 
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea rows="5" placeholder="Your Message" required></textarea>
+  <form class="contact-form" action="https://formspree.io/f/mldlbaej" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
+    <!-- Optional: redirect to thank-you page after submit -->
+    <!-- <input type="hidden" name="_redirect" value="https://yourdomain.com/thank-you.html"> -->
+
     <button type="submit" class="cta-button">Send Message</button>
   </form>
 </section>
+
 
 
 
