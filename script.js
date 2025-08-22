@@ -67,24 +67,22 @@ const botResponses = {
 
 
 // Function to display messages
-function addMessage(content, sender) {
+function addMessage(content, sender, nav = false) {
   const div = document.createElement("div");
   div.classList.add("msg", sender);
 
   if (sender === "bot") {
-    // Bot can send HTML (links, emojis, styled text, etc.)
     div.innerHTML = content;
   } else {
-    // User messages should stay safe (no HTML execution)
     div.textContent = content;
   }
 
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 
-  // ✅ Extra feature: smooth scroll to sections if bot responds
-  if (sender === "bot") {
-    const lowerContent = content.toLowerCase(); // make it case-insensitive
+  // ✅ Only scroll if nav = true
+  if (sender === "bot" && nav) {
+    const lowerContent = content.toLowerCase();
 
     if (lowerContent.includes("about")) {
       document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
@@ -104,40 +102,55 @@ function addMessage(content, sender) {
 
 
 
+
+
 // Function to get bot response
-let firstMessage = true; // flag for first user input
+
+let firstMessage = true;
 
 function getBotResponse(userMsg) {
-  // Normalize input
-  userMsg = userMsg
-    .toLowerCase()        // make lowercase
-    .trim()               // remove extra spaces
-    .replace(/\s+/g, " "); // collapse multiple spaces
+  userMsg = userMsg.toLowerCase().trim().replace(/\s+/g, " ");
 
-  // 👋 If it's the first user message → greet + show options
   if (firstMessage) {
     firstMessage = false;
-    return "👋 Hi there! Welcome to my portfolio.<br><br>You can ask me about:<br>✅ Age<br>✅ Experience<br>✅ Projects<br>✅ Skills<br>✅ Education<br>✅ Contact<br><br>Type any of these to know more!";
+    return {
+      text: "👋 Hi there! Welcome to my portfolio.<br><br>You can ask me about:<br>✅ Age<br>✅ Experience<br>✅ Projects<br>✅ Skills<br>✅ Education<br>✅ Contact<br><br>Type any of these to know more!",
+      nav: false
+    };
   }
 
-  // 📌 If user explicitly types 'help'
+  if (userMsg.includes("hi") || userMsg.includes("hello") || userMsg.includes("hey")) {
+    return {
+      text: "👋 Hello! How can I help you today? You can ask about my Age, Skills, Projects, Education, or Contact.",
+      nav: false
+    };
+  }
+
   if (userMsg.includes("help")) {
-    return "Here’s what you can ask me about:<br>✅ Age<br>✅ Experience<br>✅ Projects<br>✅ Skills<br>✅ Education<br>✅ Contact";
+    return {
+      text: "Here’s what you can ask me about:<br>✅ Age<br>✅ Experience<br>✅ Projects<br>✅ Skills<br>✅ Education<br>✅ Contact",
+      nav: false
+    };
   }
 
-  // 🔍 Check responses dictionary
   for (let key in botResponses) {
-    const keywords = key.toLowerCase().split("|");  // also lowercase keys
+    const keywords = key.toLowerCase().split("|");
     for (let k of keywords) {
       if (userMsg.includes(k)) {
-        return botResponses[key];
+        return { text: botResponses[key], nav: true }; // ✅ only dictionary answers trigger scroll
       }
     }
   }
 
-  // Default fallback
-  return "Hmm 🤔 I don’t have an answer for that. Try typing 'help' to see what I can do.";
+  return {
+    text: "Hmm 🤔 I don’t have an answer for that. Try typing 'help' to see what I can do.",
+    nav: false
+  };
 }
+
+
+
+
 
 
 
@@ -166,3 +179,18 @@ toggleBtn.addEventListener("click", () => {
 document.getElementById("chat-header").addEventListener("click", () => {
   chatbot.style.display = "none";
 });
+function handleUserInput() {
+  const input = userInput.value.trim();
+  if (!input) return;
+
+  // show user message
+  addMessage(input, "user");
+
+  // get bot response
+  const response = getBotResponse(input);
+
+  // show bot message
+  addMessage(response.text, "bot", response.nav);
+
+  userInput.value = ""; // clear input
+}
