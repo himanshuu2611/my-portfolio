@@ -170,3 +170,31 @@ toggleBtn.addEventListener("click", () => {
 document.getElementById("chat-header").addEventListener("click", () => {
   chatbot.style.display = "none";
 });
+
+
+
+// Always start from top/home on page load or refresh
+// 1) Disable browser scroll restoration
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+// 2) On full load: clear any #hash and scroll to top
+window.addEventListener('load', () => {
+  if (location.hash) {
+    history.replaceState(null, '', location.pathname + location.search); // remove #... without adding history
+  }
+  // use 'auto' (standard); 'instant' is not a valid value
+  setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+});
+
+// 3) Also handle pages restored from bfcache (back/forward navigation)
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+  }
+});
+
